@@ -1,0 +1,18 @@
+{
+  "name": "node_rasp_broadcast",
+  "version": "1.0.0",
+  "description": "electron nbplus broadcast",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://basagee@gitblit.basagee.tk/r/node/node_rasp_broadcast.git"
+  },
+  "keywords": [
+    "broadcast"
+  ],
+  "author": "basagee",
+  "license": "GPL-3.0"
+}
