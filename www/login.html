@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>로그인</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./css/fancySelect.css" />
+    <link rel="stylesheet" href="./css/font-awesome.min.css" />
+    <link rel="stylesheet" href="./css/login.css" />
+    <link rel="stylesheet" href="./css/toastr.min.css" />
+    <link rel="stylesheet" href="./css/loading.css" />
+    <link rel="icon" href="./assets/ic_launcher.png" />
+
+    <!-- Insert this line above script imports  -->
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/fancySelect.js"></script>
+    <script type="text/javascript" src="./js/login.js"></script>
+    <script type="text/javascript" src="./js/init_bridge.js"></script>
+    <script type="text/javascript" src="./js/aes.js"></script>
+    <script type="text/javascript" src="./js/toastr.min.js"></script>
+    <!-- Insert this line after script imports -->
+    <script>if (window.module) module = window.module;</script>
+</head>
+
+<body>
+    <div id='div_contents'>
+        <div id='div_regionform' class="wrapper">
+          	<div class="container" >
+          		<div class="logo_container"><img src="./assets/nbplus.png" width="200" height="63" style="margin-top:20px;" /><h1>IoT Gateway</h1></div>
+
+                <div class='input_container'>
+                <form class="form">
+                    <div>
+                        <div id='div_select_state'  style='margin-bottom:10px;'>
+                        <select id='select_state' class="cs-select cs-skin-rotate">
+        					<option value="-1" selected='true' disabled="true">시/도를 선택하세요.</option>
+        				</select>
+                        </div>
+                        <div id='div_select_city'>
+                        <select id='select_city' class="cs-select cs-skin-rotate">
+        					<option value="-1" selected='true' disabled="true">시/군/구를 선택하세요.</option>
+        				</select>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit" id="id_select_region_button" style="margin-top:20px;">지역 선택</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>      <!-- end of 'region form' -->
+
+        <div id='div_loginform' class="wrapper" style='display:none'>
+          	<div class="container" >
+          		<div class="logo_container"><img src="./assets/nbplus.png" width="200" height="63" style="margin-top:20px;" /><h1>IoT Gateway</h1></div>
+
+                <div class='input_container'>
+          		<form class="form">
+          			<input type="text" id='userid' placeholder="아이디" />
+          			<input type="password" id='passwd' placeholder="비밀번호" />
+                    <input type="text" id='regionview' readonly='true' disabled='true' placeholder="" />
+          			<button type="submit" id="id_login_button" style="margin-top:20px;">로그인</button>
+          		</form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id='div_loading' class="loading-container" style="display:none; margin: 0; padding: 0;">
+        <div class="loading"></div>
+        <div id="loading-text">loading</div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+{"httpConfig":{"name":"NB plus IoT Gateway node","port":80,"staticDirectory":"/home/basagee/Development/node_rasp_broadcast"},"applicationPackageName":"com.nbplus.iotgw","version":"1.0.0","deviceId":"5ba8f9e1f443d91d525ac76aad914f1cea11c36e"}

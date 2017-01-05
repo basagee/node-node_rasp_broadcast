@@ -1,0 +1,250 @@
+@font-face {
+	font-weight: normal;
+	font-style: normal;
+	font-family: 'codropsicons';
+	src:url('../fonts/codropsicons.eot');
+	src:url('../fonts/codropsicons.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/codropsicons.woff') format('woff'),
+		url('../fonts/codropsicons.ttf') format('truetype'),
+		url('../fonts/codropsicons.svg#codropsicons') format('svg');
+}
+
+@font-face {
+ font-family: 'NanumBarunGothic';
+ font-style: normal;
+ font-weight: 400;
+ src: url('http://themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.eot');
+ src: url('http://themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.eot?#iefix') format('embedded-opentype'),
+      url('http://themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.woff') format('woff'),
+      url('http://themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.ttf') format('truetype');
+}
+
+@font-face {
+ font-family: 'NanumBarunGothic';
+ font-style: normal;
+ font-weight: 700;
+ src: url('http://themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.eot');
+ src: url('http://themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.eot?#iefix') format('embedded-opentype'),
+      url('http://themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.woff') format('woff'),
+      url('http://themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.ttf') format('truetype');
+}
+
+.nanumbarungothic * {
+ font-family: 'NanumBarunGothic', sans-serif;
+}
+
+.normal {
+ font-style: normal;
+}
+
+.w250 {
+ font-weight: 250;
+}
+
+.w300 {
+ font-weight: 300;
+}
+
+.w350 {
+ font-weight: 350;
+}
+
+.w400 {
+ font-weight: 400;
+}
+
+.w500 {
+ font-weight: 500;
+}
+
+.w700 {
+ font-weight: 700;
+}
+
+.w800 {
+ font-weight: 800;
+}
+
+.w900 {
+ font-weight: 900;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-weight: 300;
+}
+
+body {
+    font-family:'NanumBarunGothic';
+    /*background: url("../assets/ic_bg_main_land.jpg") no-repeat center center fixed; */
+    background-color: transparent;
+    /*background-repeat:no-repeat;
+    background-position:center center;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+body ::-webkit-input-placeholder {
+    /* WebKit browsers */
+    font-family:'NanumBarunGothic';
+    color: white;
+    font-weight: 300;
+}
+body :-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    font-family:'NanumBarunGothic';
+    color: white;
+    opacity: 1;
+    font-weight: 300;
+}
+body ::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    font-family:'NanumBarunGothic';
+    color: white;
+    opacity: 1;
+    font-weight: 300;
+}
+body :-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    font-family:'NanumBarunGothic';
+    color: white;
+    font-weight: 300;
+}
+.wrapper {
+    background: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 400px;
+    margin-top: -200px;
+}
+.wrapper.form-success .container h1 {
+  -webkit-transform: translateY(85px);
+      -ms-transform: translateY(85px);
+          transform: translateY(85px);
+}
+.container {
+  min-width: 700px;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 80px 0;
+  height: 400px;
+  text-align: center;
+}
+.container h1 {
+    font-family:'NanumBarunGothic';
+    color: white;
+    font-size: 40px;
+    -webkit-transition-duration: 1s;
+          transition-duration: 1s;
+    -webkit-transition-timing-function: ease-in-put;
+          transition-timing-function: ease-in-put;
+    font-weight: 200;
+}
+form {
+  padding: 20px 0;
+  position: relative;
+}
+form input {
+    font-family:'NanumBarunGothic';
+    appearance: none;
+    outline: 0;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 280px;
+    border-radius: 3px;
+    padding: 10px 15px;
+    margin: 0 auto 10px auto;
+    display: block;
+    text-align: center;
+    font-size: 18px;
+    color: white;
+    -webkit-transition-duration: 0.25s;
+          transition-duration: 0.25s;
+    font-weight: 300;
+}
+form input:hover {
+    font-family:'NanumBarunGothic';
+    background-color: rgba(255, 255, 255, 0.4);
+}
+form input:focus {
+    font-family:'NanumBarunGothic';
+    background-color: white;
+    width: 300px;
+    color: #000;
+    font-weight: 300;
+}
+form button {
+    appearance: none;
+    outline: 0;
+    border: 0;
+    width: 250px;
+    cursor: pointer;
+
+    transition-duration: 0.25s;
+    background: #3498db;
+    background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+    background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+    background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+    background-image: -o-linear-gradient(top, #3498db, #2980b9);
+    background-image: linear-gradient(to bottom, #3498db, #2980b9);
+    -webkit-border-radius: 25;
+    -moz-border-radius: 25;
+    border-radius: 25px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
+form button:hover {
+    background: #3cb0fd;
+    background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+    text-decoration: none;
+}
+
+@-webkit-keyframes square {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(-700px) rotate(600deg);
+            transform: translateY(-700px) rotate(600deg);
+  }
+}
+@keyframes square {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(-700px) rotate(600deg);
+            transform: translateY(-700px) rotate(600deg);
+  }
+}
+
+.logo_container {
+    float: left;
+    width: 300px;
+    padding: 0 0;
+    text-align: center;
+    height: 430px;
+}
+
+.input_container {
+    float: right;
+    padding: 0 0;
+    width: 400px;
+    text-align: center;
+    height: 430px;
+}

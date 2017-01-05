@@ -1,0 +1,390 @@
+@font-face {
+    font-family:'NanumGothic';
+    src: url('http://themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.eot');
+    src: url('http://themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.eot?#iefix') format('embedded-opentype'),
+         url('http://themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.woff') format('woff'),
+         url('http://themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family:'NanumGothicBold';
+    src: url('http://themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.eot');
+    src: url('http://themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.eot?#iefix') format('embedded-opentype'),
+         url('http://themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.woff') format('woff'),
+         url('http://themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family:'NanumGothicBold';
+    /*background: url("../assets/ic_bg_main_land.jpg") no-repeat center center fixed; */
+    background-color: transparent;
+    /*background-repeat:no-repeat;
+    background-position:center center;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+a {
+    outline: medium none !important;
+}
+
+.nav-inverse {
+    min-width: 1024px;
+    height: 46px;
+    background-color: rgba(21,33,56,0.9);
+    border-color: rgba(21,33,56,0.9);
+
+    -webkit-box-shadow: 0 8px 6px -6px #999;
+    -moz-box-shadow: 0 8px 6px -6px #999;
+    box-shadow: 0 8px 6px -6px #999;
+}
+
+.container {
+    height: 100%;
+    width: 794px;
+    padding-top: 74px;
+    padding-bottom: 38px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: transparent;
+}
+
+.left_panel_container {
+    float: left;
+    width: 318px;
+    padding: 0 0;
+    text-align: center;
+    height: 430px;
+}
+
+.left_panel_widget {
+    float: right;
+    background-color: transparent;
+    min-width: 318px;
+}
+
+.right_panel_container {
+    float: right;
+    padding: 0 0;
+    width: 442px;
+    text-align: center;
+    height: 430px;
+}
+
+.right_panel_widget {
+    float: left;
+    background-color: transparent;
+    min-width: 442px;
+}
+
+.nav_push_status_on {
+    color: #FFD105;
+    /*padding-right: 15px;*/
+}
+
+.nav_push_status_off {
+    color: #EDEFF0;
+    /*padding-right: 15px;*/
+}
+
+.nav_div_village_name {
+    color: #fff;
+    max-width: 500px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+    font-weight: bold;
+}
+
+/*
+ * nav_menu_default anchor style
+ */
+ /* unvisited link */
+.nav > li.nav_menu_default > a:link {
+    color: #ffffff;
+}
+
+/* visited link */
+.nav > li.nav_menu_default > a:visited {
+    color: #ffffff;
+}
+
+/* mouse over link */
+.nav > li.nav_menu_default > a:hover {
+    color: #3399ff;
+}
+
+/* selected link */
+.nav > li.nav_menu_default > a:active {
+    color: #3399ff;
+}
+
+/*
+ * nav_menu_enable anchor style
+ */
+ /* unvisited link */
+.nav > li.nav_menu_enable > a:link {
+    color: #ffb80f;
+}
+
+/* visited link */
+.nav > li.nav_menu_enable > a:visited {
+    color: #ffb80f;
+}
+
+/* mouse over link */
+.nav > li.nav_menu_enable > a:hover {
+    color: #3399ff;
+}
+
+/* selected link */
+.nav > li.nav_menu_enable > a:active {
+    color: #3399ff;
+}
+
+/*
+ * nav_menu_enable anchor style
+ */
+ /* unvisited link */
+.nav > li.nav_menu_disable > a:link {
+    color: #7c869a;
+}
+
+/* visited link */
+.nav > li.nav_menu_disable > a:visited {
+    color: #7c869a;
+}
+
+/* mouse over link */
+.nav > li.nav_menu_disable > a:hover {
+    color: #3399ff;
+}
+
+/* selected link */
+.nav > li.nav_menu_disable > a:active {
+    color: #3399ff;
+}
+
+.digital_clock_text {
+    font-size: 80px;
+    padding: 0px;
+    margin-bottom: -3px;
+    color: #d74a38;
+    font-family:'NanumGothicBold';
+    font-weight: bold;
+}
+
+/* am or pm */
+.digital_pclock_text {
+    font-size: 35px;
+    padding: 0px;
+    margin-bottom: -3px;
+    color: #d74a38;
+    font-family:'NanumGothicBold';
+    font-weight: bold;
+}
+
+.digital_date_text {
+    margin-top: -5px;
+    font-size: 22px;
+    color: #000000;
+    font-family:'NanumGothicBold';
+    font-weight: bold;
+    text-shadow: 0 2px 0 white;
+}
+
+.current_weather_style {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 60px;
+    padding-right: 60px;
+    color: #ffffff;
+    height: 145px;
+    min-width: 318px;
+    text-align: center;
+    font-weight: bold;
+    background: url("../assets/ic_weather_bg_01.png");
+    background-size: cover;
+}
+
+.week_weather_style {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 113px;
+    min-width: 318px;
+    text-align: center;
+    font-family:'NanumGothicBold';
+    font-weight: bold;
+    background-color: #fff;
+    text-shadow: 0 2px 0 white;
+}
+
+/*******************************************************************************
+ 위치선택 modal popup
+ ******************************************************************************/
+
+ .plainmodal-close {
+   cursor: pointer;
+ }
+ .plainmodal-close.sample-close {
+   display: inline-block;
+   padding: 1px 3px;
+   color: #fff;
+   background-color: #224388;
+ }
+ .plainmodal-close.sample-close:hover {
+   background-color: #1f99e2;
+ }
+
+ /* ==================================== id_geo_position_select_modal */
+ #id_geo_position_select_modal {
+   -moz-border-radius: 10px;
+   -webkit-border-radius: 10px;
+   border-radius: 10px;
+   min-width: 570px;
+   max-width: 570px;
+   /*margin-right: 25px;*/
+   /* for close-button */
+   padding-left: 10px;
+   padding-right: 10px;
+   padding-top: 10px;
+   padding-bottom: 30px;
+   background-color: #00aa6a;
+   display: none;
+ }
+
+ /* title header and subtitle */
+ #id_geo_position_select_modal h2,
+ #id_geo_position_select_modal h3 {
+   color: #fff;
+   font-weight: bold;
+   margin-bottom: 10px;
+ }
+ #id_geo_position_select_modal h2 {
+   margin: 0;
+   font-size: 24px;
+ }
+ #id_geo_position_select_modal h3 {
+   margin: 5px 0;
+   font-size: 18px;
+   text-align: right;
+ }
+ #id_geo_position_select_modal p {
+   color: #fff;
+   font-size: 16px;
+ }
+ #id_geo_position_select_modal img {
+   display: block;
+   max-width: 100%;
+   height: auto;
+   margin: 5px auto;
+ }
+ #id_geo_position_select_modal .plainmodal-close {
+   position: absolute;
+   width: 45px;
+   height: 45px;
+   right: -15px;
+   top: -15px;
+   background: url("../assets/plainmodal-close.png") no-repeat;
+ }
+ #id_geo_position_select_modal .plainmodal-close:hover {
+   background-position: -45px 0;
+ }
+
+ .weather_menu_button {
+     margin-left:0px;//-.5%;
+     margin-right:0px;//-.5%
+ }
+
+ .weather_menu_button:before,
+ .weather_menu_button:after {
+     content:&quot; &quot;;
+     display:table
+ }
+
+ .weather_menu_button:after {
+     clear:both
+ }
+
+ .weather_menu_button .square {
+     margin-top: 0px;
+     margin-bottom: 10px;
+     margin-left: 10px;
+     width: 150px;
+     height: 45px;
+     float:left;
+     text-align:center;
+     background-color:#111;
+     -webkit-transition:all .2s;
+     -moz-transition:all .2s;
+     -o-transition:all .2s;
+     transition:all .2s
+ }
+
+ .weather_menu_button .square.region {
+     background-color:rgba(0, 150, 172, 0.9)
+ }
+
+ .weather_menu_button .square.selected {
+     background-color:rgba(75, 94, 94, 0.9)
+ }
+
+ .weather_menu_button .region:hover {
+     background-color:rgba(0, 222, 255, 0.9);
+ }
+
+ .weather_menu_button .square a {
+     display:block;
+     color:#fff;
+     padding:15px 5px;
+     text-decoration:none;
+ }
+
+ .weather_menu_button .square span {
+     display:block;
+ }
+
+ .weather_menu_button .square span.app_type {
+     font-size:14px;
+     font-weight: bold;
+ }
+
+ @media only screen and (min-width: 768px) {
+   #id_geo_position_select_modal {
+     width: 60%;
+     height: 400px;
+     /*margin-right: 0;*/
+     /*height: 400px;*/
+     padding: 20px 40px;
+   }
+   #id_geo_position_select_modal:after {
+     /* clearfix */
+     content: "";
+     clear: both;
+     display: block;
+   }
+   #id_geo_position_select_modal h2 {
+     font-size: 26px;
+   }
+   #id_geo_position_select_modal h3 {
+     margin: 10px 0 15px;
+     font-size: 20px;
+   }
+   #id_geo_position_select_modal p {
+     font-size: 18px;
+   }
+   #id_geo_position_select_modal img {
+     display: inline;
+     float: left;
+     margin: 0 10px 0 0;
+   }
+ }

@@ -1,0 +1,200 @@
+/*================= CSS Social Icons Widget by msdesignbd.com =====================*/
+
+.widget_menu_button {
+    margin-left:0px;//-.5%;
+    margin-right:0px;//-.5%
+}
+
+.widget_menu_button:before,
+.widget_menu_button:after {
+    content:&quot; &quot;;
+    display:table
+}
+
+.widget_menu_button:after {
+    clear:both
+}
+
+.widget_menu_button .large_rect_angle {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    width: 206px;
+    height: 142px;
+    padding-top: 22px;
+    padding-bottom: 26px;
+    float:left;
+    text-align:center;
+    background-color:#111;
+    -webkit-transition:all .2s;
+    -moz-transition:all .2s;
+    -o-transition:all .2s;
+    transition:all .2s
+}
+
+.widget_menu_button .small_square {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    width: 134px;
+    height: 134px;
+    padding-top: 22px;
+    padding-bottom: 26px;
+    float:left;
+    text-align:center;
+    background-color:#111;
+    -webkit-transition:all .2s;
+    -moz-transition:all .2s;
+    -o-transition:all .2s;
+    transition:all .2s
+}
+
+/* 
+ * button widget background style definitions
+ */
+.round-corner {
+    -webkit-border-radius: 4px 4px 4px 4px; 
+    -moz-border-radius: 4px 4px 4px 4px;
+    -o-border-radius: 4px 4px 4px 4px;
+    border-radius: 4px 4px 4px 4px;
+}
+
+.widget_menu_button .large_rect_angle.broadcast { 
+    background-color: rgba(4, 92, 181, 0.9);
+}
+
+.widget_menu_button .large_rect_angle.emergencycall{
+    background-color: rgba(100, 128, 186, 0.9)
+}
+
+.widget_menu_button .small_square.radio {
+    background-color:rgba(43, 185, 192, 0.9)
+}
+
+.widget_menu_button .small_square.participant { 
+    background-color:rgba(0, 150, 172, 0.9) 
+}
+
+.widget_menu_button .small_square.additional {
+    background-color:rgba(0, 161, 125, 0.9)
+}
+
+.widget_menu_button .small_square.phonebook {
+    background-color:rgba(53, 57, 63, 0.9)
+}
+
+.widget_menu_button .small_square.smarthome {
+    background-color:rgba(75, 94, 94, 0.9)
+}
+
+.widget_menu_button .small_square.myinfo {
+    background-color:rgba(29, 67, 83, 0.9)
+}
+
+.widget_menu_button .broadcast:hover { 
+    background-color:rgba(51, 154, 255, 0.9);
+}
+
+.widget_menu_button .emergencycall:hover {
+    background-color:rgba(153, 186, 255, 0.9)
+}
+
+.widget_menu_button .radio:hover {
+    background-color:rgba(98, 235, 242, 0.9)
+}
+
+.widget_menu_button .participant:hover { 
+    background-color:rgba(0, 222, 255, 0.9);
+}
+
+.widget_menu_button .additional:hover {
+    background-color:rgba(0, 244, 189, 0.9);
+}
+
+.widget_menu_button .phonebook:hover {
+    background-color:rgba(139, 145, 155, 0.9)
+}
+
+.widget_menu_button .smarthome:hover {
+    background-color:rgba(151, 183, 183, 0.9);
+}
+
+.widget_menu_button .myinfo:hover {
+    background-color:rgba(84, 143, 168, 0.9);
+}
+
+.widget_menu_button .large_rect_angle a {
+    display:block;
+    color:#fff;
+    padding:15px 5px;
+    text-decoration:none;
+}
+
+.widget_menu_button .large_rect_angle span {
+    display:block
+}
+
+.widget_menu_button .large_rect_angle span.app_type {
+    font-size:14px;
+    line-height:16px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.widget_menu_button .small_square a {
+    display:block;
+    color:#fff;
+    padding:15px 5px;
+    text-decoration:none;
+}
+
+.widget_menu_button .small_square span {
+    display:block;
+}
+
+.widget_menu_button .small_square span.app_type {
+    font-size:14px;
+    line-height:16px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/*
+ * firefox에서 지원하지 않음. 
+ * src property를 사용한다. 
+
+.widget_menu_button .large_rect_angle img.img_broadcast { 
+  content:url("../assets/ic_menu_01.png");
+}
+
+.widget_menu_button .large_rect_angle img.img_emergencycall { 
+  content:url("../assets/ic_menu_02.png");
+}
+
+.widget_menu_button .small_square img.img_radio { 
+  content:url("../assets/ic_menu_03.png");
+}
+
+.widget_menu_button .small_square img.img_participant { 
+  content:url("../assets/ic_menu_04.png");
+}
+
+.widget_menu_button .small_square img.img_additional { 
+  content:url("../assets/ic_menu_05.png");
+}
+
+.widget_menu_button .small_square img.img_phonebook { 
+  content:url("../assets/ic_menu_06.png");
+}
+
+.widget_menu_button .small_square img.img_smarthome { 
+  content:url("../assets/ic_menu_07.png");
+}
+
+.widget_menu_button .small_square img.img_myinfo { 
+  content:url("../assets/ic_menu_08.png");
+}
+ */
+
+/* end of button widget style definitions */
+

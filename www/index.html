@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>NBP IoT Gateway</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./css/font-awesome.min.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/toastr.min.css" />
+    <link rel="stylesheet" href="./css/fancySelect.css" />
+    <link rel="stylesheet" href="./css/loading.css" />
+    <link rel="stylesheet" href="./css/buttons.css" />
+    <link rel="icon" href="./assets/ic_launcher.png" type="image/x-icon"/>
+    <link rel="shortcut icon" href="./assets/ic_launcher.png" type="image/x-icon" />
+
+    <!-- Insert this line above script imports  -->
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script>require('electron-cookies')</script>
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
+    <script type="text/javascript" src="./js/init_bridge.js"></script>
+    <script type="text/javascript" src="./js/aes.js"></script>
+    <script type="text/javascript" src="./js/toastr.min.js"></script>
+    <script type="text/javascript" src="./js/buttons.js" />
+    <!-- Insert this line after script imports -->
+    <script>if (window.module) module = window.module;</script>
+</head>
+
+<body>
+    <div id='div_contents'>
+        <div id="page_header_view">
+			<div id="main_title" style=''><img src="./assets/nbplus.png" width="140" height="43" style="vertical-align:middle; margin-top:-5px;" /><span style="font-weight: bold;">IoT Gateway</span></div>
+
+			<div id='iot_menu_devicelist' class="right_box">
+				<div id="sel_register_box" class="sel_box">
+					<div id="all" class="item selected" title="전체 리포트">전체</div>
+					<div class="line"></div>
+					<div id="registered" class="item" title="주간 리포트">등록</div>
+					<div class="line"></div>
+					<div id="unregistered" class="item" title="월간 리포트">미등록</div>
+				</div>
+
+				<div id="sel_view_box" class="sel_box">
+					<!--<div id="card" class="item" title="카드보기"></div>
+					<div class="line"></div>-->
+					<div id="list" class="item selected" title="리스트보기"></div>
+				</div>
+                <div id="sel_system_box" class="sel_box">
+					<div id="card" class="item" title="장치정보">게이트웨이 정보</div>
+				</div>
+			</div>
+
+            <div id='iot_menu_system' class="right_box" style='display:none;'>
+                <div id="sel_iot_box" class="sel_box">
+					<div id="card" class="item" title="IoT 정보관리">IoT 장치 관리</div>
+				</div>
+			</div>
+    	</div>
+
+        <div id='iot_device_view_content' class='contents_view' style="margin:20px auto; text-align:center;">
+            <h3 style="text-align: left; margin-top:15px; width:80%"><i class="fa fa-share-alt"></i>&nbsp; &nbsp;Bluetooth</h3><hr/>
+            <ul id="ble_card_view" class="report_card_list">
+    		</ul>
+            <ul id="ble_list_view" class="report_list">
+    		</ul>
+
+            <br><br>
+            <h3 style="text-align: left; margin-top:15px; width:80%"><i class="fa fa-share-alt"></i>&nbsp; &nbsp;Z-wave</h3><hr/>
+            <ul id="zw_card_view" class="report_card_list">
+    		</ul>
+            <ul id="zw_list_view" class="report_list">
+    		</ul>
+
+            <br><br>
+            <h3 style="text-align: left; margin-top:15px; width:80%"><i class="fa fa-share-alt"></i>&nbsp; &nbsp;IR Controller</h3><hr/>
+            <ul id="ir_card_view" class="report_card_list">
+    		</ul>
+            <ul id="ir_list_view" class="report_list">
+    		</ul>
+
+        </div>
+
+        <div id='iot_system_view_content' class='contents_view' style="display:none; margin:20px auto; text-align:center;">
+            <h3 style="text-align: left; margin-top:15px; width:80%"><i class="fa fa-user"></i>&nbsp; &nbsp;마을방송 사용자 정보</h3><hr/>
+
+            <table id="user_table" border="0" style='padding: 0px 100px 0px 100px; marign: 0px auto;' >
+                <tbody>
+                    <tr>
+                        <td width="35%" valign="middle" class='user_table_key'>
+                            <span style="text-align:right;font-weight: bold;">
+                                <i class="fa fa-circle-o"></i>&nbsp; &nbsp;아이디
+                            </span>
+                        </td>
+                        <td width="60%" valign="middle" class='user_table_value'>
+                            <span id='id_value'></span>
+                        </td>
+                    </tr>
+                    <tr class='even'>
+                        <td width="35%" valign="middle" class='user_table_key'>
+                            <span style="text-align:right;font-weight: bold;">
+                                <i class="fa fa-circle-o"></i>&nbsp; &nbsp;이름
+                            </span>
+                        </td>
+                        <td width="60%" valign="middle" class='user_table_value'>
+                            <span id='name_value'></span>
+                        </td>
+                    </tr>
+                    <tr >
+                        <td width="35%" valign="middle" class='user_table_key'>
+                            <span style="text-align:right;font-weight: bold;">
+                                <i class="fa fa-circle-o"></i>&nbsp; &nbsp;마을 정보
+                            </span>
+                        </td>
+                        <td width="60%" valign="middle" class='user_table_value'>
+                            <span id='village_value'></span>
+                        </td>
+                    </tr>
+                    <tr class='even'>
+                        <td width="35%" valign="middle" class='user_table_key'>
+                            <span style="text-align:right;font-weight: bold;">
+                                <i class="fa fa-circle-o"></i>&nbsp; &nbsp;휴대 전화
+                            </span>
+                        </td>
+                        <td width="60%" valign="middle" class='user_table_value'>
+                            <span id='phone_value'></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <br><br>
+            <h3 style="text-align: left; margin-top:15px; width:80%"><i class="fa fa-wifi"></i>&nbsp; &nbsp;컨트롤러 정보</h3><hr/>
+
+            <table id="user_table" border="0" style='padding: 0px 100px 0px 100px; marign: 0px auto;' >
+                <tbody>
+                    <tr>
+                        <td width="35%" valign="middle" class='user_table_key'>
+                            <span style="text-align:right;font-weight: bold;">
+                                <i class="fa fa-circle-o"></i>&nbsp; &nbsp;장치 고유번호
+                            </span>
+                        </td>
+                        <td width="60%" valign="middle" class='user_table_value'>
+                            <span id='deviceid_value'></span>
+                        </td>
+                    </tr>
+                    <tr class='even' >
+                        <td width="35%" valign="middle" class='user_table_key'>
+                            <span style="text-align:right;font-weight: bold;">
+                                <i class="fa fa-circle-o"></i>&nbsp; &nbsp;블루투스
+                            </span>
+                        </td>
+                        <td width="60%" valign="middle" class='user_table_value'>
+                            <span id='ble_value'></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="35%" valign="middle" class='user_table_key'>
+                            <span style="text-align:right;font-weight: bold;">
+                                <i class="fa fa-circle-o"></i>&nbsp; &nbsp;Z-Wave
+                            </span>
+                        </td>
+                        <td width="60%" valign="middle" class='user_table_value'>
+                            <span id='zwave_value'></span>
+                        </td>
+                    </tr>
+                    <tr class='even' >
+                        <td width="35%" valign="middle" class='user_table_key'>
+                            <span style="text-align:right;font-weight: bold;">
+                                <i class="fa fa-circle-o"></i>&nbsp; &nbsp;IR Control
+                            </span>
+                        </td>
+                        <td width="60%" valign="middle" class='user_table_value'>
+                            <span id='ir_value'></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--
+            <table class="nodelist" id="nodelist">
+                <thead> <tr>
+                        <th>chk</th>
+                        <th>Id</th>
+                        <th>Ext</th>
+                        <th>Type</th>
+                        <th>Product</th>
+                        <th>Name</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                    <tr id="empty_devices">
+                        <td colspan="8" style="text-align: center"> Empty Devices...</td>
+                    </tr>
+                </tbody>
+            </table>
+            -->
+        </div>
+
+    </div>
+
+    <div id='div_loading' class="loading-container" style="display:none; margin: 0; padding: 0;">
+        <div class="loading"></div>
+        <div id="loading-text">loading</div>
+    </div>
+
+</body>
+
+</html>

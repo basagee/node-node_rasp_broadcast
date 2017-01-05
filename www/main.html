@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>마을방송</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/nbp_main.css">
+    <link rel="stylesheet" href="./css/right_btn_style.css">
+    <link rel="stylesheet" href="./css/bootstrap-dialog.css">
+    <link rel="stylesheet" href="./css/toastr.min.css"/>
+    <link rel="icon" href="./assets/ic_launcher.png">
+
+    <!-- Insert this line above script imports  -->
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/init_bridge.js"></script>
+    <script type="text/javascript" src="./js/nbp_main.js"></script>
+    <script type="text/javascript" src="./js/datejs/date.js"></script>
+    <script type="text/javascript" src="./js/bootstrap-dialog.js"></script>
+    <script type="text/javascript" src="./js/toastr.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.plainmodal.min.js"></script>
+    <!-- Insert this line after script imports -->
+    <script>if (window.module) module = window.module;</script>
+</head>
+
+<body>
+    <div id="id_geo_position_select_modal">
+        <!--
+        var koreaGeoPosition = {
+            id_btn_weather_seoul : { latitude : 37.540705, longitude: 126.956764, name: '서울' },
+            id_btn_weather_inchon : { latitude : 37.469221, longitude: 126.573234, name: '인천' },
+            id_btn_weather_kwangju : { latitude : 35.126033, longitude: 126.831302, name: '광주' },
+            id_btn_weather_daegu : { latitude : 35.798838, longitude: 128.583052, name: '대구' },
+            id_btn_weather_ulsan : { latitude : 35.519301, longitude: 129.239078, name: '울산' },
+            id_btn_weather_daejeon : { latitude : 36.321655, longitude: 127.378953, name: '대전' },
+            id_btn_weather_busan : { latitude : 35.198362, longitude: 129.053922, name: '부산' },
+            id_btn_weather_kyounggi : { latitude : 37.567167, longitude: 127.190292, name: '경기' },
+            id_btn_weather_kangwon : { latitude : 37.555837, longitude: 128.209315, name: '강원' },
+            id_btn_weather_chungnam : { latitude : 36.557229, longitude: 126.779757, name: '충남' },
+            id_btn_weather_chungbuk : { latitude : 36.628503, longitude: 127.929344, name: '충북' },
+            id_btn_weather_kyoungbuk : { latitude : 36.248647, longitude: 128.664734, name: '경북' },
+            id_btn_weather_kyoungname : { latitude : 35.259787, longitude: 128.664734, name: '경남' },
+            id_btn_weather_jeonbuk : { latitude : 35.716705, longitude: 127.144185, name: '전북' },
+            id_btn_weather_jeonnam : { latitude : 34.819400, longitude: 126.893113, name: '전남' },
+            id_btn_weather_cheju : { latitude : 33.364805, longitude: 126.956764, name: '제주' }
+        };
+        -->
+        <div class="plainmodal-close"></div>
+        <h2>지역 선택</h2>
+        <!-- 6 small buttons - 2row -->
+        <div class="weather_menu_button" style='margin-top:20px; text-align:center'>
+            <div id='btn' class="square round-corner region">
+                <a href="#" id="id_btn_weather_seoul">
+                    <span class="app_type">서울</span>
+                </a>
+            </div>
+            <div id='btn' class="square region round-corner">
+                <a href="#" id="id_btn_weather_inchon">
+                    <span class="app_type">인천</span>
+                </a>
+            </div>
+            <div id='btn' class="square region round-corner">
+                <a href="#" id="id_btn_weather_kwangju">
+                    <span class="app_type">광주</span>
+                </a>
+            </div>
+        </div>
+        <div class="weather_menu_button" style='margin-top:20px; text-align:center'>
+            <div id='btn' class="square round-corner region">
+                <a href="#" id="id_btn_weather_daegu">
+                    <span class="app_type">대구</span>
+                </a>
+            </div>
+            <div id='btn' class="square region round-corner">
+                <a href="#" id="id_btn_weather_ulsan">
+                    <span class="app_type">울산</span>
+                </a>
+            </div>
+            <div id='btn' class="square region round-corner">
+                <a href="#" id="id_btn_weather_daejeon">
+                    <span class="app_type">대전</span>
+                </a>
+            </div>
+        </div>
+        <div class="weather_menu_button" style='margin-top:20px; text-align:center'>
+            <div id='btn' class="square round-corner region">
+                <a href="#" id="id_btn_weather_busan">
+                    <span class="app_type">부산</span>
+                </a>
+            </div>
+            <div id='btn' class="square region round-corner">
+                <a href="#" id="id_btn_weather_kyounggi">
+                    <span class="app_type">경기</span>
+                </a>
+            </div>
+            <div id='btn' class="square region round-corner">
+                <a href="#" id="id_btn_weather_kangwon">
+                    <span class="app_type">강원</span>
+                </a>
+            </div>
+        </div>
+        <div class="weather_menu_button" style='margin-top:20px; text-align:center'>
+            <div id='btn' class="square round-corner region">
+                <a href="#" id="id_btn_weather_chungnam">
+                    <span class="app_type">충남</span>
+                </a>
+            </div>
+            <div id='btn' class="square region round-corner">
+                <a href="#" id="id_btn_weather_chungbuk">
+                    <span class="app_type">충북</span>
+                </a>
+            </div>
+            <div id='btn' class="square region round-corner">
+                <a href="#" id="id_btn_weather_kyoungnam">
+                    <span class="app_type">경남</span>
+                </a>
+            </div>
+        </div>
+        <div class="weather_menu_button" style='text-align:center'>
+            <div id='btn' class="square round-corner region">
+                <a href="#" id="id_btn_weather_kyoungbuk">
+                    <span class="app_type">경북</span>
+                </a>
+            </div>
+            <div id='btn' class="square region round-corner">
+                <a href="#" id="id_btn_weather_jeonbuk">
+                    <span class="app_type">전북</span>
+                </a>
+            </div>
+            <div id='btn' class="square region round-corner">
+                <a href="#" id="id_btn_weather_jeonnam">
+                    <span class="app_type">전남</span>
+                </a>
+            </div>
+        </div>
+        <div class="weather_menu_button" style='text-align:center;margin-bottom:50px;'>
+            <div id='btn' class="square round-corner region">
+                <a href="#" id="id_btn_weather_cheju">
+                    <span class="app_type">제주</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li class="navbar-brand center-block">
+                <div class="nav_div_village_name">
+                    <i class="fa fa-wifi nav_push_status_off" id="nav_push_status_icon"></i>
+                    <span id="id_nav_village_name" style="padding-left:10px;">마을방송</span>
+                </div>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li id='id_nav_menu_outdoor' class="nav_menu_disable">
+                <a id='id_nav_btn_outing' href="#">
+                    <img src="./assets/ic_nav_line.png" />
+                    <img id='id_nav_menu_outdoor_img' src="./assets/ic_nav_absentia_off.png" style="padding-left:15px;padding-right:8px;" />
+                    <span id='id_nav_menu_outdoor_span'>외출중</span>
+                </a>
+            </li>
+            <li  id='id_nav_menu_sitemap' class="nav_menu_default">
+                <a id='id_nav_btn_sitemap' href="#">
+                    <img src="./assets/ic_nav_line.png" />
+                    <img src="./assets/ic_nav_sitemap.png" style="padding-left:15px;padding-right:8px;" />
+                    <span>사이트맵</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <!-- left panel -->
+    <div class="left_panel_container">
+        <!-- digital clock -->
+        <div class="left_panel_widget">
+            <span id="id_digital_pclock" class="digital_pclock_text">오전</span>
+            <span id="id_digital_clock" class="digital_clock_text">11:44</span>
+        </div>
+        <!-- digital date -->
+        <div class="left_panel_widget" style="margin-bottom: 20px;">
+            <span id="id_digital_date" class="digital_date_text">6월 1일 일요일</span>
+        </div>
+
+        <!-- weather view -->
+        <div class="left_panel_widget">
+            <!-- current weather -->
+            <div id="id_div_current_weather" class="current_weather_style">
+                <div style="margin-bottom:6px;">
+                    <span id="id_weather_title" style="font-size: 20px; text-shadow: 2px 2px 4px #000000;">거지마을 현재날씨</span>
+                </div>
+                <div style="margin-bottom:6px;">
+                    <span id="id_weather_status" style="font-size: 15px; text-shadow: 2px 2px 4px #000000;">맑음 | 미세먼지 보통</span>
+                </div>
+                <div style="text-align: center; vertical-align: middle;border: 1px #000;">
+                    <span id="id_weather_temperature" style="float:left;font-size: 45px; text-shadow: 2px 2px 4px #000000;">28˚</span>
+                    <img id="id_weather_current_sky_status" src="./assets/ic_weather_01.png" style="float:right; vertical-align: middle;">
+                </div>
+            </div>
+
+            <!-- 3days weather view -->
+            <div  id="id_div_week_weather" class="week_weather_style" style="border: 1px #000;">
+                <div style="float: left; width: 106px; background-color: #fff;">
+                    <div style="margin-bottom: 6px;">
+                        <span id="id_today_date" style="color: #333333; font-size: 18px;">2일(화)</span>
+                    </div>
+                    <div style="margin-bottom: 6px;">
+                        <img id="id_today_sky_status" src="./assets/ic_weather_sm_01.png">
+                    </div>
+                    <div style="color: #333333; font-size: 20px;">
+                        <span id="id_today_max_temperature">29˚</span>
+                    </div>
+                </div>
+
+                <div style="display: inline-block; width: 106px; background-color: #fff">
+                    <div style="margin-bottom: 6px;">
+                        <span id="id_tomorrow_date" style="color: #333333; font-size: 18px; font-weight:bold;">3일(수)</span>
+                    </div>
+                    <div style="margin-bottom: 6px;">
+                        <img id="id_tomorrow_sky_status" src="./assets/ic_weather_sm_01.png">
+                    </div>
+                    <div style="color: #333333; font-size: 20px;">
+                        <span id="id_tomorrow_max_temperature">29˚</span>
+                    </div>
+                </div>
+
+                <div style="float: right; width: 106px; background-color: #fff">
+                    <div style="margin-bottom: 6px; color: #333333; font-size: 18px; font-weight:bold;">
+                        <span id="id_datomorrow_date">4일(목)</span>
+                    </div>
+                    <div style="margin-bottom: 6px;">
+                        <img id="id_datomorrow_sky_status" src="./assets/ic_weather_sm_01.png">
+                    </div>
+                    <div style="color: #333333; font-size: 20px;">
+                        <span id="id_datomorrow_max_temperature">29˚</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </div>
+
+  <!-- right panel -->
+  <div class="right_panel_container">
+        <div class="right_panel_widget">
+
+            <!-- top large button -->
+            <div class="widget_menu_button">
+                <div class="large_rect_angle broadcast round-corner">
+                    <a href="#" id="id_btn_broadcast">
+                        <span><img src="./assets/ic_menu_01.png"></span>
+                        <span class="app_type">방송듣기</span>
+                    </a>
+                </div>
+                <div class="large_rect_angle emergencycall round-corner">
+                    <a href="#" id="id_btn_emergencycall">
+                        <span><img src="./assets/ic_menu_02.png"></span>
+                        <span class="app_type">긴급호출하기</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 6 small buttons - 2row -->
+            <div class="widget_menu_button">
+                <div class="small_square radio round-corner">
+                    <a href="#" id="id_btn_radio">
+                        <span><img src="./assets/ic_menu_03.png"></span>
+                        <span class="app_type">라디오듣기</span>
+                    </a>
+                </div>
+                <div class="small_square participant round-corner">
+                    <a href="#" id="id_btn_participant">
+                        <span><img src="./assets/ic_menu_04.png"></span>
+                        <span class="app_type">참여마당</span>
+                    </a>
+                </div>
+                <div class="small_square additional round-corner">
+                    <a href="#" id="id_btn_additional">
+                        <span><img src="./assets/ic_menu_05.png"></span>
+                        <span class="app_type">부가기능</span>
+                    </a>
+                </div>
+            </div>
+            <div class="widget_menu_button">
+                <div class="small_square phonebook round-corner">
+                    <a href="#" id="id_btn_phonebook">
+                        <span><img src="./assets/ic_menu_06.png"></span>
+                        <span class="app_type">관공서 연락처</span>
+                    </a>
+                </div>
+                <div class="small_square smarthome round-corner">
+                    <a href="#" id="id_btn_smarthome">
+                        <span><img src="./assets/ic_menu_07.png"></span>
+                        <span class="app_type">스마트홈 서비스</span>
+                    </a>
+                </div>
+                <div class="small_square myinfo round-corner">
+                    <a href="#" id="id_btn_myinfo">
+                        <span><img src="./assets/ic_menu_settings.png"></span>
+                        <span class="app_type">설정</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+
+</html>
