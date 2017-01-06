@@ -60,6 +60,7 @@ $(document).ready(function() {
 
     if (isNodeWebkit) {
         localStorage.removeItem('nbp-broadcast')
+        localStorage.removeItem("isUserOutgoingMode")
     }
     startLoading();
 
@@ -187,15 +188,18 @@ function getStatePage() {
                         $("#select_state").append(optstr);
                     });
                     select.trigger('update.fs');
+                    $('#div_contents').show();
 
                     stopLoading();
                 } catch (e) {
                     log(DebugMode.ERROR, "parse json error");
+                    $('#div_contents').show();
                     stopLoading();
                     return;
                 }
             } else {
                 log(DebugMode.ERROR, '마을방송 지역검색에 실패하였습니다. 관리자에게 문의해 주세요.');
+                $('#div_contents').show();
                 stopLoading();
             }
 
@@ -207,6 +211,7 @@ function getStatePage() {
             } else {
                 log(DebugMode.ERROR, '마을방송 지역검색에 실패하였습니다. 관리자에게 문의해 주세요.');
             }
+            $('#div_contents').show();
         }
     });
 }
@@ -335,9 +340,9 @@ function onClickLogin() {
     param.userid = userid;
     param.passwd = passwd;
     param.serverurl = selectedCityValue.IF_S;
-    console.log(getDeviceId())
-    if (!isNullObject(getDeviceId())) {
-        param.deviceid = getDeviceId();
+
+    if (!isNullObject(window.nbplus.getDeviceId())) {
+        param.deviceid = window.nbplus.getDeviceId();
     }
 
     //var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(logindata), 'd6F3Ufeq');
@@ -346,7 +351,7 @@ function onClickLogin() {
     // send to iot gateway
     var url = '';
     if (isNodeWebkit) {
-        url += 'http://localhost';
+        url += window.nbplus.getElectronServerAddress()
     }
     url += "/api/login";
     $.ajax({
@@ -467,7 +472,7 @@ function checkRegisteredGateway() {
     log(DebugMode.DEBUG, "checkRegisteredGateway() entered");
     var url = '';
     if (isNodeWebkit) {
-        url += 'http://localhost';
+        url += window.nbplus.getElectronServerAddress()
     }
     url += "/api/is_registered";
 
@@ -549,7 +554,7 @@ function registerIoTGateway() {
     log(DebugMode.DEBUG, "registerIoTGateway() entered");
     var url = '';
     if (isNodeWebkit) {
-        url += 'http://localhost';
+        url += window.nbplus.getElectronServerAddress()
     }
     url += "/api/register";
 

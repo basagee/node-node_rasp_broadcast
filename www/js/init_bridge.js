@@ -103,27 +103,6 @@ function parseResponseHeaders(headerStr) {
     return headers;
 }
 
-var deviceId = '';
-var villageName = ''
-var applicationPackageName = '';
-var serverInformation = {};
-
-function getDeviceId() {
-    return deviceId;
-}
-
-function getVillageName() {
-    return villageName;
-}
-
-function getApplicationPackageName() {
-    return applicationPackageName;
-}
-
-function getServer() {
-    return serverInformation;
-}
-
 /*
  * using self
  */
@@ -154,40 +133,56 @@ function parseResponseHeaders(headerStr) {
 }
 
 function initJavaScriptWebChannelBridge(canSetName) {
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = function () {
-        if (request.readyState === 4) {
-            //
-            // The following headers may often be similar
-            // to those of the original page request...
-            //
-            var headers = parseResponseHeaders(request.getAllResponseHeaders());
+    if (isNullObject(window.nbplus)) {
+        console.log('xxx  isNullObject(window.nbplus)  xxxxxxxxxxxxxxxxxxxxxxxxxx')
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (request.readyState === 4) {
+                //
+                // The following headers may often be similar
+                // to those of the original page request...
+                //
+                var headers = parseResponseHeaders(request.getAllResponseHeaders());
 
-            deviceId = headers["Broadcast-DeviceId"];
-            villageName = decodeURIComponent(headers["Broadcast-VillageName"]);
-            applicationPackageName = headers["Broadcast-AppPackageName"];
+                deviceId = headers["Broadcast-DeviceId"];
+                villageName = decodeURIComponent(headers["Broadcast-VillageName"]);
+                applicationPackageName = headers["Broadcast-AppPackageName"];
 
-            if (!isNullObject(headers["Broadcast-Server"])) {
-                var servertxt = decodeURIComponent(headers["Broadcast-Server"]);
-                if (!isNullObject(servertxt)) {
-                    window.nbplus.server = JSON.parse(servertxt);
+                if (!isNullObject(headers["Broadcast-Server"])) {
+                    var servertxt = decodeURIComponent(headers["Broadcast-Server"]);
+                    if (!isNullObject(servertxt)) {
+                        serverInformation = JSON.parse(servertxt);
+                    }
                 }
             }
-        }
-    };
+        };
 
-    //
-    // Re-request the same page (document.location)
-    // We hope to get the same or similar response headers to those which
-    // came with the current page, but we have no guarantee.
-    // Since we are only after the headers, a HEAD request may be sufficient.
-    //
-    request.open('HEAD', document.location, true);
-    request.send(null);
+        //
+        // Re-request the same page (document.location)
+        // We hope to get the same or similar response headers to those which
+        // came with the current page, but we have no guarantee.
+        // Since we are only after the headers, a HEAD request may be sufficient.
+        //
+        request.open('HEAD', document.location, true);
+        request.send(null);
+    } else {
+        // maybe android or ios
+        console.log(window.nbplus)
+    }
 }
 
+/*****************************************
+ * using electron
+ */
+var deviceId = '';
+var villageName = ''
+var applicationPackageName = '';
+var serverInformation = {};
 var isNodeWebkit = false;
-var gui;
+var isRemoteApp = false;
+
+/***** end of using electron */
+
 function initJavascriptBridge(canSetName) {
     //window.resizeTo(1024, 660);
     try {
@@ -196,35 +191,61 @@ function initJavascriptBridge(canSetName) {
             var path = require('path');
             var appDir = __dirname;
             var bgpath = 'file:///' + appDir + '/assets/ic_bg_main_land.jpg';
-            console.log('background-image path = ' + bgpath);
             $("body").css({'background-image' : 'url(' + bgpath + ')',
                             'background-repeat': 'no-repeat',
                             'background-attachment': 'fixed',
                             'background-position': 'center'});
 
             // using ipc
-            // window.nbplus.closeWebApplication = function() {
-            //     console.log('nwWindow.close();');
-            //     // close current window.
-            //     gui.Window.get().close();
-            // }
+            window.nbplus = {};
+            window.nbplus.closeWebApplication = function() {
+                console.log('nwWindow.close();');
+                // close current window.
+                const remote = require('electron').remote;
+                var window = remote.getCurrentWindow();
+                window.close();
+            }
+            window.nbplus.getElectronServerAddress = function() {
+                var config = require('electron').remote.require('./lib/settings/configuration');
+                return config.getServerConfig().address + ':' + config.getServerConfig().port;
+            }
+
             var config = require('electron').remote.require('./lib/settings/configuration');
-            deviceId = config.getDeviceId();
-            applicationPackageName = config.getApplicationPackageName()
+            isLocalElectronApp = config.isLocalElectron();
+            if (isLocalElectronApp) {
+                deviceId = config.getDeviceId();
+                applicationPackageName = config.getApplicationPackageName();
+            } else {
+                initJavaScriptWebChannelBridge(canSetName);
+            }
+            window.nbplus.getDeviceId = function() {
+                return deviceId;
+            }
+
+            window.nbplus.getVillageName = function() {
+                return villageName;
+            }
+
+            window.nbplus.getApplicationPackageName = function() {
+                return applicationPackageName;
+            }
+            window.nbplus.getServer = function() {
+                return serverInformation;
+            }
         } else {
-            $("body").css({'background-image' : 'url(./assets/ic_bg_main_land.jpg)',
-                            'background-repeat': 'no-repeat',
-                            'background-attachment': 'fixed',
-                            'background-position': 'center'});
+            // $("body").css({'background-image' : 'url(./assets/ic_bg_main_land.jpg)',
+            //                 'background-repeat': 'no-repeat',
+            //                 'background-attachment': 'fixed',
+            //                 'background-position': 'center'});
 
             initJavaScriptWebChannelBridge(canSetName);
         }
     } catch (e) {
         if (!isNodeWebkit) {
-            $("body").css({'background-image' : 'url(./assets/ic_bg_main_land.jpg)',
-                            'background-repeat': 'no-repeat',
-                            'background-attachment': 'fixed',
-                            'background-position': 'center'});
+            // $("body").css({'background-image' : 'url(./assets/ic_bg_main_land.jpg)',
+            //                 'background-repeat': 'no-repeat',
+            //                 'background-attachment': 'fixed',
+            //                 'background-position': 'center'});
 
             initJavaScriptWebChannelBridge(canSetName);
         }

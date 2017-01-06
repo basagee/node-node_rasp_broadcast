@@ -6,17 +6,6 @@
 process.env.NODE_ENV = ( process.env.NODE_ENV && ( process.env.NODE_ENV ).trim().toLowerCase() == 'production' ) ? 'production' : 'development';
 require('log-timestamp')(function() { return '[' + new Date().toLocaleString() + ']'; });
 
-var logger = require('./lib/utils/jsutils').logger;
-var Server = require('./lib/server');
-var aesCrypto = require('./lib/aes-256-ctr');
-var jsutils = require('./lib/utils/jsutils');
-var NetworkStatus = require('./lib/utils/network');
-
-var config = require('./lib/settings/configuration');
-
-process.setMaxListeners(15);
-
-// check iot scenario
 var fs = require('fs');
 var electron = require('electron');
 var app = electron.app;  // 어플리케이션 기반을 조작 하는 모듈.
@@ -25,7 +14,23 @@ const {session} = require('electron');
 
 var path = require('path');
 var appDir = path.dirname(require.main.filename);
+var confdir = appDir + '/config.data';
 
+if (!fs.existsSync(confdir)){
+    fs.mkdirSync(confdir);
+}
+
+var logger = require('./lib/utils/jsutils').logger;
+var Server = require('./lib/server');
+var aesCrypto = require('./lib/aes-256-ctr');
+var jsutils = require('./lib/utils/jsutils');
+var NetworkStatus = require('./lib/utils/network');
+
+var config = require('./lib/settings/configuration');
+
+//process.setMaxListeners(15);
+
+// check iot scenario
 var server = Server.createServer();
 NetworkStatus.on('connection changed', function(connStatus) {
     console.log('connection status changed = ' + connStatus);

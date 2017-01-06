@@ -1,11 +1,15 @@
 {
-  "name": "nbp-iotgw",
+  "name": "electron-broadcast",
   "version": "0.0.1",
   "description": "Better streaming static file server with Range and conditional-GET support",
   "main": "app.js",
   "scripts": {
     "test": "NODE_ENV=development electron .",
-    "start": "NODE_ENV=production electron ."
+    "start": "NODE_ENV=production electron .",
+    "package-mac": "electron-packager . --version=1.4.13 --overwrite --platform=darwin --arch=x64 --icon=./www/assets/ic_launcher.icns --prune=true --out=release-builds --ignore=\"config.data\" --ignore=\"node_modules/(electron-packager|electron-prebuilt)\"",
+    "package-win": "electron-packager . --version=1.4.13 --overwrite --asar=true --platform=win32 --arch=ia32 --icon=./www/assets/ic_launcher.ico --prune=true --out=release-builds --version-string.CompanyName=NBPlus --version-string.FileDescription=NBPlus --version-string.ProductName=\"NBP Electron Broadcastl App\"  --ignore=\"config.data\" --ignore=\"node_modules/(electron-packager|electron-prebuilt)\"",
+    "package-linux": "electron-packager . --version=1.4.13 --overwrite --platform=linux --arch=x64 --icon=./www/assets/ic_launcher/64x64.png --prune=true --out=release-builds  --ignore=\"config.data\" --ignore=\"node_modules/(electron-packager|electron-prebuilt)\"",
+    "package-armv7l": "electron-packager . --version=1.4.13 --overwrite --platform=linux --arch=armv7l --icon=./www/assets/ic_launcher/64x64.png --prune=true --out=release-builds  --ignore=\"config.data\" --ignore=\"node_modules/(electron-packager|electron-prebuilt)\""
   },
   "keywords": [
     "iot"
@@ -17,7 +21,6 @@
     "debug": "~2.3.1",
     "depd": "~1.1.0",
     "destroy": "~1.0.4",
-    "electron-cookies": "^1.1.0",
     "escape-html": "~1.0.3",
     "etag": "~1.7.0",
     "fresh": "0.3.0",

@@ -131,11 +131,13 @@ $(document).ready(function() {
         if (isNullObject(cookie)) {
             console.log('show login window')
             remote.getCurrentWindow().loadURL('file://' + appDir + '/login.html')
+            return;
         } else {
             var checkCookie = jsutils.checkCookieAndGetUser(cookie);
             if (!checkCookie.isvalid) {
                 console.log('show login window')
                 remote.getCurrentWindow().loadURL('file://' + appDir + '/login.html')
+                return;
             } else {
                 villageName = checkCookie.user.villagename;
                 serverInformation = checkCookie.user.server;
@@ -146,6 +148,7 @@ $(document).ready(function() {
             }
         }
     }
+    $('#body_div').show();
 
     toastr.options = {
         closeButton: false,
@@ -1146,34 +1149,33 @@ function onClickOutgoingMode(event) {
 function onClickSitemap(event) {
     log(DebugMode.VERBOSE, 'process onclick sitemap');
     var context = '/sitemap.rcc';
+    context += '?UUID=' + window.nbplus.getDeviceId() + '&APPID=' +
+                    window.nbplus.getApplicationPackageName();
     if (isNodeWebkit) {
         var jsutils = require('electron').remote.require('./lib/utils/jsutils');
-        context += "?UUID=" + getDeviceId() +
-                        "&APPID=" + getApplicationPackageName();
-        jsutils.showModalWindow(getServer().doc + context)
-    } else {
-        context += '?UUID=' + window.nbplus.getDeviceId() + '&APPID=' + window.nbplus.getApplicationPackageName();
+        jsutils.showModalWindow(window.nbplus.getServer().doc + context)
+    } /*else {
         if (!isNullObject(window.nbplus.getServer()) && !isNullObject(window.nbplus.getServer().doc)) {
             window.open(window.nbplus.getServer().doc + context, '_blank');
         }
-    }
+    }*/
 }
 
 /* right top 2 buttons */
 function onClickBroadcast(event) {
     log(DebugMode.VERBOSE, 'process onclick broadcast');
     var context = '/broadcasting/broadcasting/getBroadcastingList.rcc';
+    context += '?UUID=' + window.nbplus.getDeviceId() + '&APPID=' +
+                    window.nbplus.getApplicationPackageName();
 
     if (isNodeWebkit) {
         var jsutils = require('electron').remote.require('./lib/utils/jsutils');
-        context += "?UUID=" + getDeviceId() +
-                        "&APPID=" + getApplicationPackageName();
-        jsutils.showModalWindow(getServer().doc + context)
-    } else {
+        jsutils.showModalWindow(window.nbplus.getServer().doc + context)
+    } /*else {
         context += "?UUID=" + window.nbplus.getDeviceId() +
                         "&APPID=" + window.nbplus.getApplicationPackageName();
                         window.open(window.nbplus.getServer().doc + context, '_blank');
-    }
+    } */
 }
 
 function onClickEmergencyCall(event) {
@@ -1194,85 +1196,85 @@ function onClickRadio(event) {
 function onClickParticipant(event) {
     log(DebugMode.VERBOSE, 'process onclick participant');
     var context = '/participation/residentvote/getResidentVoteList.rcc';
+    context += '?UUID=' + window.nbplus.getDeviceId() + '&APPID=' +
+                    window.nbplus.getApplicationPackageName();
 
     if (isNodeWebkit) {
         var jsutils = require('electron').remote.require('./lib/utils/jsutils');
-        context += "?UUID=" + getDeviceId() +
-                        "&APPID=" + getApplicationPackageName();
-        jsutils.showModalWindow(getServer().doc + context)
-    } else {
+        jsutils.showModalWindow(window.nbplus.getServer().doc + context)
+    } /*else {
         context += "?UUID=" + window.nbplus.getDeviceId() +
                         "&APPID=" + window.nbplus.getApplicationPackageName();
         if (!isNullObject(window.nbplus.getServer()) && !isNullObject(window.nbplus.getServer().doc)) {
             window.open(window.nbplus.getServer().doc + context, '_blank');
         }
-    }
+    }*/
 }
 function onClickAdditional(event) {
     log(DebugMode.VERBOSE, 'process onclick additional');
     var context = '/addfunction/iotdata/getIotDataList.rcc'
+    context += '?UUID=' + window.nbplus.getDeviceId() + '&APPID=' +
+                    window.nbplus.getApplicationPackageName();
 
     if (isNodeWebkit) {
         var jsutils = require('electron').remote.require('./lib/utils/jsutils');
-        context += "?UUID=" + getDeviceId() +
-                        "&APPID=" + getApplicationPackageName();
-        jsutils.showModalWindow(getServer().doc + context)
-    } else {
+        jsutils.showModalWindow(window.nbplus.getServer().doc + context)
+    } /*else {
         context += "?UUID=" + window.nbplus.getDeviceId() +
                         "&APPID=" + window.nbplus.getApplicationPackageName();
         if (!isNullObject(window.nbplus.getServer()) && !isNullObject(window.nbplus.getServer().doc)) {
             window.open(window.nbplus.getServer().doc + context, '_blank');
         }
-    }
+    }*/
 }
 function onClickPhoneBook(event) {
     log(DebugMode.VERBOSE, 'process onclick phonebook');
     var context = '/addfunction/publicoffice/getPublicOfficeList.rcc';
+    context += '?UUID=' + window.nbplus.getDeviceId() + '&APPID=' +
+                    window.nbplus.getApplicationPackageName();
     if (isNodeWebkit) {
         var jsutils = require('electron').remote.require('./lib/utils/jsutils');
-        context += "?UUID=" + getDeviceId() +
-                        "&APPID=" + getApplicationPackageName();
-        jsutils.showModalWindow(getServer().doc + context)
-    } else {
+        jsutils.showModalWindow(window.nbplus.getServer().doc + context)
+    } /*else {
         context += "?UUID=" + window.nbplus.getDeviceId() +
                         "&APPID=" + window.nbplus.getApplicationPackageName();
         if (!isNullObject(window.nbplus.getServer()) && !isNullObject(window.nbplus.getServer().doc)) {
             window.open(window.nbplus.getServer().doc + context, '_blank');
         }
-    }
+    }*/
 }
 function onClickSmartHome(event) {
     log(DebugMode.VERBOSE, 'process onclick samrthome');
     var context = '/addfunction/smarthome/getSmartHomeList.rcc';
+    context += '?UUID=' + window.nbplus.getDeviceId() + '&APPID=' +
+                    window.nbplus.getApplicationPackageName();
     if (isNodeWebkit) {
         var jsutils = require('electron').remote.require('./lib/utils/jsutils');
-        context += "?UUID=" + getDeviceId() +
-                        "&APPID=" + getApplicationPackageName();
-        jsutils.showModalWindow(getServer().doc + context)
-    } else {
+        jsutils.showModalWindow(window.nbplus.getServer().doc + context)
+    } /*else {
         context += "?UUID=" + window.nbplus.getDeviceId() +
                         "&APPID=" + window.nbplus.getApplicationPackageName();
         if (!isNullObject(window.nbplus.getServer()) && !isNullObject(window.nbplus.getServer().doc)) {
             window.open(window.nbplus.getServer().doc + context, '_blank');
         }
-    }
+    }*/
 }
 function onClickMyInformation(event) {
     log(DebugMode.VERBOSE, 'process onclick my information');
     var context = '/myinfo/myinfo/getMyinfoDetail.rcc';
+    context += '?UUID=' + window.nbplus.getDeviceId() + '&APPID=' +
+                    window.nbplus.getApplicationPackageName();
 
     if (isNodeWebkit) {
         var jsutils = require('electron').remote.require('./lib/utils/jsutils');
-        context += "?UUID=" + getDeviceId() +
-                        "&APPID=" + getApplicationPackageName();
-        jsutils.showModalWindow(getServer().doc + context)
-    } else {
+        jsutils.showModalWindow(window.nbplus.getServer().doc + context)
+    } /*else {
         context += "?UUID=" + window.nbplus.getDeviceId() +
                         "&APPID=" + window.nbplus.getApplicationPackageName();
         if (!isNullObject(window.nbplus.getServer()) && !isNullObject(window.nbplus.getServer().doc)) {
             window.open(window.nbplus.getServer().doc + context, '_blank');
         }
-    }
+    }*/
 }
 
 }());
