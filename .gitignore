@@ -11,7 +11,7 @@ pids
 logs
 results
 
-config
-release-builds
-node_modules
+config.data/
+release-builds/
+node_modules/
 npm-debug.log
