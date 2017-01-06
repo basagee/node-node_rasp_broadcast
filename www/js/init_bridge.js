@@ -179,7 +179,7 @@ var villageName = ''
 var applicationPackageName = '';
 var serverInformation = {};
 var isNodeWebkit = false;
-var isRemoteApp = false;
+var isLocalElectronApp = false;
 
 /***** end of using electron */
 
@@ -210,7 +210,7 @@ function initJavascriptBridge(canSetName) {
                 return config.getServerConfig().address + ':' + config.getServerConfig().port;
             }
 
-            var config = require('electron').remote.require('./lib/settings/configuration');
+        var config = require('electron').remote.require('./lib/settings/configuration');
             isLocalElectronApp = config.isLocalElectron();
             if (isLocalElectronApp) {
                 deviceId = config.getDeviceId();
@@ -237,10 +237,10 @@ function initJavascriptBridge(canSetName) {
             //                 'background-repeat': 'no-repeat',
             //                 'background-attachment': 'fixed',
             //                 'background-position': 'center'});
-
             initJavaScriptWebChannelBridge(canSetName);
         }
     } catch (e) {
+        console.log(e)
         if (!isNodeWebkit) {
             // $("body").css({'background-image' : 'url(./assets/ic_bg_main_land.jpg)',
             //                 'background-repeat': 'no-repeat',
