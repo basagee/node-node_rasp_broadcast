@@ -191,17 +191,24 @@ function initJavascriptBridge(canSetName) {
             var path = require('path');
             var appDir = __dirname;
             var bgpath = 'file:///' + appDir + '/assets/ic_bg_main_land.jpg';
+            /*
             $("body").css({'background-image' : 'url(' + bgpath + ')',
                             'background-repeat': 'no-repeat',
                             'background-attachment': 'fixed',
                             'background-position': 'center'});
+            */
+            var body = document.getElementsByTagName("body")[0];
+            body.style.backgroundImage = 'url(' + bgpath + ')';
+            body.style.backgroundRepeat = 'no-repeat';
+            body.style.backgroundAttachment = 'fixed';
+            body.style.backgroundPosition = 'center';
 
             // using ipc
             window.nbplus = {};
             window.nbplus.closeWebApplication = function() {
                 console.log('nwWindow.close();');
                 // close current window.
-                const remote = require('electron').remote;
+                var remote = require('electron').remote;
                 var window = remote.getCurrentWindow();
                 window.close();
             }

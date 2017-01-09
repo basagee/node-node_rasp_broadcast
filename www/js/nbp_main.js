@@ -1104,13 +1104,19 @@ function clickedButtonEventHandler(event) {
  */
 var isUserOutgoingMode = false;
 function onClickOutgoingMode(event) {
+    console.log('-----------------------------')
+    console.log(event)
+    console.log('prev isUserOutgoingMode = ' + isUserOutgoingMode)
+
     var canUseLocalStorage = typeof(Storage) !== "undefined";
     if (canUseLocalStorage) {
+        console.log(localStorage.getItem("isUserOutgoingMode", 'false'))
         if (localStorage.getItem("isUserOutgoingMode", 'false') === "false") {
             isUserOutgoingMode = false;
         } else {
             isUserOutgoingMode = true;
         }
+        console.log('localstorage isUserOutgoingMode = ' + isUserOutgoingMode)
     }
 
     if (!isNullObject(event)) {     // 사용자가 누른 경우
@@ -1120,6 +1126,7 @@ function onClickOutgoingMode(event) {
         isUserOutgoingMode = !isUserOutgoingMode;
         if (canUseLocalStorage) {
             localStorage.setItem("isUserOutgoingMode", isUserOutgoingMode ? "true" : "false");
+            console.log('set isUserOutgoingMode = ' + localStorage.getItem("isUserOutgoingMode"))
         }
 
         if (isUserOutgoingMode) {

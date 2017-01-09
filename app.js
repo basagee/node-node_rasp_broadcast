@@ -3,7 +3,7 @@
 'use strict';
 
 // app.js
-process.env.NODE_ENV = ( process.env.NODE_ENV && ( process.env.NODE_ENV ).trim().toLowerCase() == 'development' ) ? 'development' : 'production';
+process.env.NODE_ENV = ( process.env.NODE_ENV && ( process.env.NODE_ENV ).trim().toLowerCase() == 'production' ) ? 'production' : 'development';
 require('log-timestamp')(function() { return '[' + new Date().toLocaleString() + ']'; });
 
 var fs = require('fs');
