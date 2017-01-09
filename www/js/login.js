@@ -60,7 +60,8 @@ $(document).ready(function() {
 
     if (isNodeWebkit) {
         localStorage.removeItem('nbp-broadcast')
-        localStorage.removeItem("isUserOutgoingMode")
+        //localStorage.removeItem("isUserOutgoingMode")
+        localStorage.setItem("isUserOutgoingMode", "false")
     }
     startLoading();
 
