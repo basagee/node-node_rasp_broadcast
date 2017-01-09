@@ -68,6 +68,11 @@
             console.error(e);
         });
     }
+
+    setTimeout(function() {
+        self.opener = self;
+        window.close();
+    }, 5000)
 }
 
 function onBackPressed() {
