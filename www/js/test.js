@@ -16,8 +16,8 @@
  var o_offer, o_answer;
  var b_remote_sdp = false;
  var b_firefox = false;
- var o_webkitGetUserMediaHasType = { audio: true, video: true };
- var o_MediaContraintsHasType = { audio: true, video: true };
+ var o_webkitGetUserMediaHasType = { audio: true, video: false };
+ var o_MediaContraintsHasType = { audio: true, video: false };
  var o_media_constraints =
  { 'mandatory':
      {
@@ -65,7 +65,7 @@
             // document.getElementById("btnTestAnswer").disabled = false;
         },
         function (e) {
-            console.error(e.toString());
+            console.error(e);
         });
     }
 }
