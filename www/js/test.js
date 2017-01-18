@@ -2,7 +2,25 @@
 (function () {
 'use strict';
 
- window.onload = function () {
+window.onload = function () {  
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+    var constraints = {audio: false, video: true};
+    var video = document.querySelector('video');
+    console.log('get user media...')
+    function successCallback(stream) {
+    console.log('get user media success.....')
+        window.stream = stream; // stream available to console
+        if (window.URL) {
+            video.src = window.URL.createObjectURL(stream);
+        } else {
+            video.src = stream;
+        }
+    }
+    function errorCallback(error){
+        console.log('navigator.getUserMedia error: ', error);
+    }
+    navigator.getUserMedia(constraints, successCallback, errorCallback);
+
     if (typeof history.pushState === "function") {
         history.pushState("nbp-iotgw", null, null);
         window.onpopstate = function () {
@@ -31,22 +49,6 @@
         };
     }
     initJavascriptBridge();
-
-    document.getElementById("btn").addEventListener("click", onBackPressed);
-
-    var getUserMedia = require('getusermedia');
-
-    getUserMedia(function (err, stream) {
-        // if the browser doesn't support user media
-        // or the user says "no" the error gets passed
-        // as the first argument.
-        if (err) {
-           console.log('failed');
-           console.log(err)
-        } else {
-           console.log('got a stream', stream);
-        }
-    });
 }
 
 function onBackPressed() {
