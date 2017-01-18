@@ -188,9 +188,21 @@ function initJavascriptBridge(canSetName) {
     try {
         if (require('electron')) {
             isNodeWebkit = true;
-            var path = require('path');
-            var appDir = __dirname;
-            var bgpath = 'file:///' + appDir + '/assets/ic_bg_main_land.jpg';
+            var config = require('electron').remote.require('./lib/settings/configuration');
+            var httpConfig = config.getServerConfig();
+
+            /*
+            Basic Structure of a URL
+            <protocol>//<hostname>:<port>/<pathname><search><hash>
+            */
+
+            var currentProtocol = window.location.protocol;
+            var bgpath = '';
+            if (currentProtocol.startsWith('http') || currentProtocol.startsWith('https')) {
+                bgpath = 'http://localhost:8080' + '/assets/ic_bg_main_land.jpg';
+            } else {
+                bgpath = 'file://' +  httpConfig.staticDirectory + '/www' + '/assets/ic_bg_main_land.jpg';
+            }
             /*
             $("body").css({'background-image' : 'url(' + bgpath + ')',
                             'background-repeat': 'no-repeat',
@@ -217,7 +229,7 @@ function initJavascriptBridge(canSetName) {
                 return config.getServerConfig().address + ':' + config.getServerConfig().port;
             }
 
-        var config = require('electron').remote.require('./lib/settings/configuration');
+            var config = require('electron').remote.require('./lib/settings/configuration');
             isLocalElectronApp = config.isLocalElectron();
             if (isLocalElectronApp) {
                 deviceId = config.getDeviceId();
@@ -229,6 +241,9 @@ function initJavascriptBridge(canSetName) {
                 return deviceId;
             }
 
+            window.nbplus.setVillageName = function() {
+                console.log('electron do not use this method');
+            }
             window.nbplus.getVillageName = function() {
                 return villageName;
             }
@@ -249,11 +264,13 @@ function initJavascriptBridge(canSetName) {
     } catch (e) {
         console.log(e)
         if (!isNodeWebkit) {
-            // $("body").css({'background-image' : 'url(./assets/ic_bg_main_land.jpg)',
-            //                 'background-repeat': 'no-repeat',
-            //                 'background-attachment': 'fixed',
-            //                 'background-position': 'center'});
-
+            if (isNullObject(window.nbplus)) {
+                var body = document.getElementsByTagName("body")[0];
+                body.style.backgroundImage = 'url(./assets/ic_bg_main_land.jpg)';
+                body.style.backgroundRepeat = 'no-repeat';
+                body.style.backgroundAttachment = 'fixed';
+                body.style.backgroundPosition = 'center';
+            }
             initJavaScriptWebChannelBridge(canSetName);
         }
     }

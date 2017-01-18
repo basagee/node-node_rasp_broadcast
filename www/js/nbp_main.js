@@ -1193,12 +1193,8 @@ function onClickEmergencyCall(event) {
 function onClickRadio(event) {
     log(DebugMode.VERBOSE, 'process onclick radio');
     var context = '/is/api/Service/GetRadioList';
-    if (!isNullObject(window.nbplus)) {
-        var deviceId = window.nbplus.deviceId;
-        alert("deviceId = " + window.nbplus.getDeviceId());
-    } else {
-        alert("QWebChannel not found... ");
-    }
+
+    toastr['info']('라디오 듣기는 준비중입니다.', '준비중');
 }
 function onClickParticipant(event) {
     log(DebugMode.VERBOSE, 'process onclick participant');
@@ -1257,6 +1253,7 @@ function onClickSmartHome(event) {
                     window.nbplus.getApplicationPackageName();
     if (isNodeWebkit) {
         var jsutils = require('electron').remote.require('./lib/utils/jsutils');
+        console.log(window.nbplus.getServer().doc)
         jsutils.showModalWindow(window.nbplus.getServer().doc + context)
     } /*else {
         context += "?UUID=" + window.nbplus.getDeviceId() +
