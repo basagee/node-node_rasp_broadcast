@@ -4,8 +4,8 @@
 
 window.onload = function () {  
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-    var constraints = {audio: false, video: true};
-    var video = document.querySelector('video');
+    var constraints = {audio: true, video: false};
+    var video = document.getElementById('video');
     console.log('get user media...')
     function successCallback(stream) {
     console.log('get user media success.....')
