@@ -1,0 +1,72 @@
+<html>
+
+<head>
+    <!-- Insert this line above script imports  -->
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/init_bridge.js"></script>
+    <script type="text/javascript" src="api-pretty.js"></script>
+    <script type="text/javascript" src="village.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="status.js"></script>
+    <!-- Insert this line after script imports -->
+    <script>if (window.module) module = window.module;</script>
+
+</head>
+
+<body>
+<div id="testMsg" style="width:100%; height:200px; text-align:center; margin-top:100px;">
+	<img src="progressBar.gif" alt="진행중" style="width:80%">
+</div>
+
+<audio id="audioBroad" controls="" style="display:none;">
+</audio>
+<script type="text/JavaScript">
+window.onload = function() {
+    initJavascriptBridge();
+
+	var player = document.getElementById('audioBroad');
+    player.addEventListener("error", onBackPressed);
+    player.addEventListener("ended", onBackPressed);
+    player.addEventListener("durationchange", onAudioDurationChange);
+    player.play();
+    //alert(player.error.code);
+}
+
+function onAudioDurationChange() {
+    var player = document.getElementById('audioBroad');
+    console.log(">> onAudioDurationChange = " + player.duration);
+    if (player.duration == 0) {
+    	player.pause();
+    	player.currentTime = 0;
+    	player.src = '';
+        if (window.nbplus != null && typeof window.nbplus != 'undefined') {
+       		window.nbplus.closeWebApplication();
+       	}
+    }
+}
+
+function onBackPressed() {
+	var player = document.getElementById("audioBroad");
+	player.removeEventListener("error", onBackPressed);
+    player.removeEventListener("ended", onBackPressed);
+
+    player.pause();
+    player.currentTime = 0;
+    player.src = '';
+   	console.log("onBackPressed() received from native");
+   	if (window.nbplus != null && typeof window.nbplus != 'undefined') {
+   		window.nbplus.closeWebApplication();
+   	}
+}
+
+//Native에서 홈키 눌렀을때 웹뷰 종료
+function onCloseWebApplicationByUser() {
+	console.log("call onCloseWebApplicationByUser() ");
+	releaseRegister();
+	DisconnectChat();
+	if (window.nbplus != null && typeof window.nbplus != 'undefined') {
+		window.nbplus.closeWebApplication();
+	}
+}
+</script></body></html>

@@ -34,19 +34,6 @@
 
     document.getElementById("btn").addEventListener("click", onBackPressed);
 
-    var getUserMedia = require('getusermedia');
-
-    getUserMedia(function (err, stream) {
-        // if the browser doesn't support user media
-        // or the user says "no" the error gets passed
-        // as the first argument.
-        if (err) {
-           console.log('failed');
-           console.log(err)
-        } else {
-           console.log('got a stream', stream);
-        }
-    });
 }
 
 function onBackPressed() {

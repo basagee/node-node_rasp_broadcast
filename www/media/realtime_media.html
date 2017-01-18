@@ -1,0 +1,133 @@
+<html>
+
+<head>
+    <!-- Insert this line above script imports  -->
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/init_bridge.js"></script>
+    <script type="text/javascript" src="api-pretty.js"></script>
+    <script type="text/javascript" src="village.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="status.js"></script>
+    <!-- Insert this line after script imports -->
+    <script>if (window.module) module = window.module;</script>
+
+</head>
+
+<body>
+<div id="testMsg" style="width:100%; height:200px; text-align:center; margin-top:100px;">
+	<img src="progressBar.gif" alt="진행중" style="width:80%">
+</div>
+
+<audio id="audioBroad" controls="" autoplay="autoplay" style="display:none;"></audio>
+<script type="text/JavaScript">
+$(document).ready(function() {
+    initJavascriptBridge();
+
+	var userID = fnGetUUID();				// 사용자 ID (UUID)
+	var sipRealm = "nbplus.co.kr";		// SIP Realm
+	var broadURI = "brc36253";				// 방송 아이디
+	var audioElem = document.getElementById("audioBroad");	// Audio Tag DOM
+	if (location.protocol == 'http:') {
+		var gatewayInfo = "ws://smtown.ml:10062";			// SIP Gateway 접속 정보 (http)
+	}else{
+		var gatewayInfo = "wss://smtown.ml:10062";			// SIP Gateway 접속 정보 (https)
+	}
+	var proxyInfo = "udp://192.168.77.111:45060";		// SIP Proxy 접속 정보
+	var turnIP = "smtown.ml";	// Turn Server IP
+	var turnPort = "3478";	// Turn Server Port
+	var turnID = "m2soft";	// Turn Server ID
+	var turnPW = "onechance";	// Turn Server Password
+	NBP_SetupCall(userID, sipRealm, broadURI, audioElem, gatewayInfo, proxyInfo, turnIP, turnPort, turnID, turnPW);
+	//var player = document.getElementById('audioBroad');
+   // player.play();
+});
+function fnGetUUID() {
+    if (window.nbplus != null && typeof window.nbplus != 'undefined') {
+        console.log('window.nbplus.getDeviceId() = ' + window.nbplus.getDeviceId())
+        return window.nbplus.getDeviceId();
+    }
+}
+// 방송 개설 / 참여 명령
+/*function broadcastReady() {
+	var userID = fnGetUUID();				// 사용자 ID (송출자 ID)
+	var sipRealm = "nbplus.co.kr";		// SIP Realm
+	var broadURI = "brc36253";				// 방송 아이디
+	var audioElem = $("#audioBroad");	// Audio Tag DOM
+	var gatewayInfo = "wss://smtown.ml:10062";			// SIP Gateway 접속 정보
+	var proxyInfo = "udp://192.168.77.111:45060";		// SIP Proxy 접속 정보
+	var turnIP = "smtown.ml";	// Turn Server IP
+	var turnPort = "3478";	// Turn Server Port
+	var turnID = "m2soft";	// Turn Server ID
+	var turnPW = "onechance";	// Turn Server Password
+	alert("userId:"+userID + "broadURI:" + broadURI);
+
+	NBP_SetupCall(userID, sipRealm, broadURI, audioElem, gatewayInfo, proxyInfo, turnIP, turnPort, turnID, turnPW);
+
+	alert("after SetupCall");
+}*/
+// 방송 참여 및 개설 성공
+function NBP_onConnectedCall(event) {
+	// console.log("onConnectedCall : " + event.discription);
+	console.log("%c------------ onConnectedCall : " + event.description, 'color:red; font-weight:bold;');
+	pnst_connected = true;
+	ConnectChat();
+}
+// 방송 개설 및 참여 실패, 연결 종료 이벤트 콜백
+function NBP_onDisconnectedCall(e, reason) {
+	try{
+	    console.info("Broadcast Disconnected : " + e.discription);
+	    var mesg = "";
+	    switch(reason) {
+		    case 'NoMedia' :
+		        mesg = "미디어 디바이스를 찾을 수 없습니다."; break;
+		    case 'MediaRejected' :
+		        mesg = "미디어 접근을 거부하셨습니다."; break;
+		    case 'Unathorized' :
+		        mesg = "등록되지않은 사용자입니다."; break;
+		    case 'ServerError' :
+		        mesg = "서버 상태를 확인해주세요."; break;
+			case 'ConnectError' :
+		        mesg = "서버와의 연결이 원활하지 않습니다."; break;
+// 		    case 'EndSession' :
+// 		        mesg = "세션이 종료되었습니다."; break;
+// 		    case 'BYE' :
+// 				mesg = "방송이 종료됩니다."; break;
+			case 'ICEError' :
+				mesg = "연결이 지연되어 종료됩니다. 잠시 후 다시 접속해주세요."; break;
+	        default :
+// 	        	mesg = "알 수 없는 에러로 방송을 종료합니다.\n 관리자에게 문의해주세요.";
+	    }
+	    var player = document.getElementById("audioBroad");
+	    if(player.duration){
+		    player.pause();
+		    player.currentTime = 0;
+		    player.src = '';
+	    }
+
+	    releaseRegister();
+	    DisconnectChat();
+	    window.nbplus.closeWebApplication();
+	} catch (e) {
+	    releaseRegister();
+	    DisconnectChat();
+	    window.nbplus.closeWebApplication();
+	}
+}
+
+function onBackPressed() {
+   	console.log("onBackPressed() received from native");
+   	window.nbplus.closeWebApplication();
+}
+
+//Native에서 홈키 눌렀을때 웹뷰 종료
+function onCloseWebApplicationByUser() {
+	console.log("call onCloseWebApplicationByUser() ");
+	releaseRegister();
+	DisconnectChat();
+	if (window.nbplus != null && typeof window.nbplus != 'undefined') {
+		window.nbplus.closeWebApplication();
+	}
+}
+</script>
+</body></html>

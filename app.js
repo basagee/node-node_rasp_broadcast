@@ -87,10 +87,13 @@ function startApplication() {
     		  icon: httpConfig.staticDirectory + '/www/ic_launcher.png',
     		  'text-areas-are-resizable':false
     });
+    mainWindow.webContents.session.clearCache(function(){
+    //some callback.
+    });
     jsutils.setMainWindow(mainWindow);
 
-    mainWindow.loadURL('file://' + __dirname + '/www/test.html');
-    //mainWindow.loadURL('http://localhost/');
+    mainWindow.loadURL('file://' + __dirname + '/www/main.html');
+    //mainWindow.loadURL('http://192.168.77.173:8080/test.html');
     if (process.env.NODE_ENV === 'development') {
         // 개발자 콘솔을 엽니다.
         mainWindow.openDevTools();
