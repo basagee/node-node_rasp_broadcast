@@ -92,8 +92,8 @@ function startApplication() {
     });
     jsutils.setMainWindow(mainWindow);
 
-    //mainWindow.loadURL('file://' + __dirname + '/www/main.html');
-    mainWindow.loadURL('file://' + __dirname + '/www/test.html');
+    mainWindow.loadURL('file://' + __dirname + '/www/main.html');
+    //mainWindow.loadURL('file://' + __dirname + '/www/test.html');
     if (process.env.NODE_ENV === 'development') {
         // 개발자 콘솔을 엽니다.
         mainWindow.openDevTools();
