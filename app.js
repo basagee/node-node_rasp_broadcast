@@ -20,6 +20,29 @@ if (!fs.existsSync(confdir)){
     fs.mkdirSync(confdir);
 }
 
+/* start pjsua */
+try {
+    _config = JSON.parse(fs.readFileSync(appDir + '/config.data' + '/pjsua.conf', "utf8"));
+} catch (e) {
+    if (e.code === 'ENOENT') {
+        fs.appendFile(appDir + '/config.data' + '/cpjsua.conf', '', function(err) {
+            //logger.error(err);
+        });
+    }
+}
+
+//fs.writeFileSync(appDir + '/config.data' + '/config.json', JSON.stringify(_config), "utf8");
+
+var exec = require('child_process').exec;
+if (process.arch === 'x64') {
+
+} else if (process.arch === 'arm') {
+
+}
+console.log(process.arch)
+return;
+/* end of pjsua */
+
 var logger = require('./lib/utils/jsutils').logger;
 var Server = require('./lib/server');
 var aesCrypto = require('./lib/aes-256-ctr');
