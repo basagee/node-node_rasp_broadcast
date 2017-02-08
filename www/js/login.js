@@ -527,8 +527,13 @@ function checkRegisteredGateway() {
                                 console.log('move to ' + 'file://' + appDir + '/main.html')
                                 remote.getCurrentWindow().loadURL('file://' + appDir + '/main.html')
                             } else {
-                                console.log(window.location.host + '/main.html');
-                                window.location.href = 'http://' + window.location.host + '/main.html';
+                                if (isUsingBrowser) {
+                                    console.log(window.location.host + '/main.html');
+                                    window.location.href = 'http://' + window.location.host + '/main.html';
+                                } else {
+                                    console.log(window.location.host + '/iotgw.html');
+                                    window.location.href = 'http://' + window.location.host + '/iotgw.html';
+                                }
                             }
                         } else {
                             log(DebugMode.ERROR, '다른 사용자가 사용중입니다. 사용자 정보를 확인해 주세요.');
@@ -597,8 +602,13 @@ function registerIoTGateway() {
                         console.log('move to ' + 'file://' + appDir + '/main.html')
                         remote.getCurrentWindow().loadURL('file://' + appDir + '/main.html')
                     } else {
-                        console.log(window.location.host + '/main.html');
-                        window.location.href = 'http://' + window.location.host + '/main.html';
+                        if (isUsingBrowser) {
+                            console.log(window.location.host + '/main.html');
+                            window.location.href = 'http://' + window.location.host + '/main.html';
+                        } else {
+                            console.log(window.location.host + '/iotgw.html');
+                            window.location.href = 'http://' + window.location.host + '/iotgw.html';
+                        }
                     }
                 } else {
                     // show error message

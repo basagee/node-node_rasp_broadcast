@@ -117,7 +117,7 @@ var isMyGateway = false;
 
 $(document).ready(function() {
     //if (isNullObject(window.nbplus)) {
-        initJavascriptBridge();
+        initJavascriptBridge(true);
     //}
 
     if (isNodeWebkit) {

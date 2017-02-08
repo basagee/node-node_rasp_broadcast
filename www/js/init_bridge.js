@@ -134,7 +134,9 @@ function parseResponseHeaders(headerStr) {
 
 function initJavaScriptWebChannelBridge(canSetName) {
     if (isNullObject(window.nbplus)) {
-        console.log('xxx  isNullObject(window.nbplus)  xxxxxxxxxxxxxxxxxxxxxxxxxx')
+        console.log('xxx  isNullObject(window.nbplus)  Maybe user use his/her browser  xxxxxxxxxxxxxxxxxxxxxxxxxx')
+
+        isUsingBrowser = true;
         var request = new XMLHttpRequest();
         request.onreadystatechange = function () {
             if (request.readyState === 4) {
@@ -148,11 +150,38 @@ function initJavaScriptWebChannelBridge(canSetName) {
                 villageName = decodeURIComponent(headers["Broadcast-VillageName"]);
                 applicationPackageName = headers["Broadcast-AppPackageName"];
 
+                console.log(deviceId)
+                console.log(villageName)
+                console.log(applicationPackageName)
+
                 if (!isNullObject(headers["Broadcast-Server"])) {
                     var servertxt = decodeURIComponent(headers["Broadcast-Server"]);
                     if (!isNullObject(servertxt)) {
                         serverInformation = JSON.parse(servertxt);
                     }
+                }
+                window.nbplus = {};
+                window.nbplus.closeWebApplication = function() {
+                    console.log('nwWindow.close();');
+                    // close current window.
+                    var remote = require('electron').remote;
+                    var window = remote.getCurrentWindow();
+                    window.close();
+                }
+                window.nbplus.getDeviceId = function() {
+                    return deviceId;
+                }
+
+                window.nbplus.getVillageName = function() {
+                    return villageName;
+                }
+
+                window.nbplus.getApplicationPackageName = function() {
+                    return applicationPackageName;
+                }
+                if (canSetName && !isNullObject(window.nbplus.getVillageName())) {
+                    $('#id_nav_village_name').html(window.nbplus.getVillageName());
+                    $('#id_weather_title').html(window.nbplus.getVillageName() + ' 현재날씨');
                 }
             }
         };
@@ -179,6 +208,7 @@ var villageName = ''
 var applicationPackageName = '';
 var serverInformation = {};
 var isNodeWebkit = false;
+var isUsingBrowser = false;
 var isLocalElectronApp = false;
 
 /***** end of using electron */
