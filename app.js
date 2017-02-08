@@ -5,6 +5,7 @@
 // app.js
 process.env.NODE_ENV = ( process.env.NODE_ENV && ( process.env.NODE_ENV ).trim().toLowerCase() == 'production' ) ? 'production' : 'development';
 require('log-timestamp')(function() { return '[' + new Date().toLocaleString() + ']'; });
+
 process.setMaxListeners(0);
 
 var fs = require('fs');
@@ -27,7 +28,8 @@ require('./lib/utils/String.prototype.format');
 require('./lib/utils/String.prototype.replaceAll');
 require('./lib/utils/String.prototype.startsWith');
 
-/* start pjsua */
+/* start pjsua - pushClient.js에서 구현한다. */
+/*
 try {
     var pjsuaconf = fs.readFileSync(appDir + '/config.data' + '/pjsua.conf', "utf8");
 } catch (e) {
@@ -100,6 +102,7 @@ if (jsutils.isNullObject(pjsuaname)) {
         console.log(stdout)
     });
 }
+*/
 /* end of pjsua */
 
 var useWebkit = false;
