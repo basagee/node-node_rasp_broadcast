@@ -90,7 +90,7 @@ if (process.arch === 'x64') {
 
 console.log('===== start pjsua......')
 console.log(pjsuaname)
-if (!jsutils.isNullObject(pjsuaname)) {
+if (jsutils.isNullObject(pjsuaname)) {
     exec(pjsuaname, function(err, stdout, stderr) {
         if (err) {
             console.log('child process exited with error code : ', err.code)
