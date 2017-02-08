@@ -14,10 +14,10 @@ NBP_MEDIA_APP_SRC_NAME="nbp_media_app"
 # create or update git repos
 if ((BASH_VERSINFO[0] >= 4)); then
     declare -A GIT_REPOS
-    GIT_REPOS["${NBP_MEDIA_APP_SRC_NAME}"]="http://basagee@gitblit.basagee.tk/r/raspberry/nbp_media_app.git"
+    GIT_REPOS["${NBP_MEDIA_APP_SRC_NAME}"]="https://github.com/basagee/node-nbp_media_app.git"
 else
     GIT_REPOS=(
-        '${NBP_MEDIA_APP_SRC_NAME}::http://basagee@gitblit.basagee.tk/r/raspberry/nbp_media_app.git'
+        '${NBP_MEDIA_APP_SRC_NAME}::://github.com/basagee/node-nbp_media_app.git'
     )
 fi
 
