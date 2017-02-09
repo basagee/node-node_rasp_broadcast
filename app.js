@@ -20,6 +20,7 @@ if (!fs.existsSync(confdir)){
 
 var logger = require('./lib/utils/jsutils').logger;
 var Server = require('./lib/server');
+var pushClient = require('./lib/push/pushclient')
 var jsutils = require('./lib/utils/jsutils');
 
 var config = require('./lib/settings/configuration');
@@ -75,6 +76,9 @@ try {
                 pjsuaconf.write('--dis-codec=L16/44100/1\r\n')
                 pjsuaconf.write('--playback-dev 0\r\n')
 
+                pjsuaconf.write('--use-cli\r\n')
+                pjsuaconf.write('--cli-telnet-port=8091\r\n')
+
                 pjsuaconf.end();
             }
         } catch (e) {}
@@ -93,8 +97,10 @@ if (process.arch === 'x64') {
 
 console.log('===== start pjsua......')
 console.log(pjsuaname)
-if (jsutils.isNullObject(pjsuaname)) {
+
+if (!jsutils.isNullObject(pjsuaname)) {
     exec(pjsuaname, function(err, stdout, stderr) {
+        console.log('child process create success!!!!')
         if (err) {
             console.log('child process exited with error code : ', err.code)
             return;
@@ -130,6 +136,7 @@ if (!useWebkit) {
         logger.info('iot-gw-server stopped.'.red);
         try {
             server.stop();
+            pushClient.stopPushClient(true)
             // After this call, the process will be able to quit
             // usbDetect.stopMonitoring();
         } catch(e) {
@@ -248,6 +255,7 @@ if (!useWebkit) {
         logger.info('iot-gw-server stopped.'.red);
         try {
             server.stop();
+            pushClient.stopPushClient(true)
             // After this call, the process will be able to quit
             // usbDetect.stopMonitoring();
         } catch(e) {

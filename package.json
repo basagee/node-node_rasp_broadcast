@@ -1,13 +1,14 @@
 {
-  "name": "electron-broadcast",
+  "name": "nbplus-broadcast",
   "version": "0.0.1",
   "description": "Better streaming static file server with Range and conditional-GET support",
   "main": "app.js",
   "scripts": {
     "test": "NODE_ENV=development electron . --use-webkit",
     "start": "NODE_ENV=production electron . --use-webkit",
-    "start-nowebkit-dev": "NODE_ENV=development node .",
-    "start-nowebkit": "NODE_ENV=production node .",
+    "node-dev": "NODE_ENV=development node .",
+    "node-dev-network": "devtool app.js --browser-field",
+    "node-start": "NODE_ENV=production node .",
     "package-mac": "electron-packager . --version=1.4.13 --overwrite --platform=darwin --arch=x64 --icon=./www/assets/ic_launcher.icns --prune=true --out=release-builds --ignore=\"config.data\" --ignore=\"node_modules/(electron-packager|electron-prebuilt)\"",
     "package-win": "electron-packager . --version=1.4.13 --overwrite --asar=true --platform=win32 --arch=ia32 --icon=./www/assets/ic_launcher.ico --prune=true --out=release-builds --version-string.CompanyName=NBPlus --version-string.FileDescription=NBPlus --version-string.ProductName=\"NBP Electron Broadcastl App\"  --ignore=\"config.data\" --ignore=\"node_modules/(electron-packager|electron-prebuilt)\"",
     "package-linux": "electron-packager . --version=1.4.13 --overwrite --platform=linux --arch=x64 --icon=./www/assets/ic_launcher/64x64.png --prune=true --out=release-builds  --ignore=\"config.data\" --ignore=\"node_modules/(electron-packager|electron-prebuilt)\"",
@@ -36,13 +37,16 @@
     "on-finished": "~2.3.0",
     "openurl": "^1.1.1",
     "parseurl": "^1.3.1",
+    "player": "^0.6.1",
     "range-parser": "~1.2.0",
     "restify": "^4.1.1",
     "restify-cookies": "^0.2.2",
     "statuses": "~1.3.0",
+    "telnet-client": "^0.13.0",
     "xhr2": "^0.1.3"
   },
   "devDependencies": {
+    "devtool": "^2.3.1",
     "electron-rebuild": "^1.4.0"
   },
   "bin": {
